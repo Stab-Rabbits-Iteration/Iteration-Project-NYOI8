@@ -2,4 +2,4 @@
 
 const cookieController = {}
 
-export.modules = cookieController;
+module.exports = cookieController;
