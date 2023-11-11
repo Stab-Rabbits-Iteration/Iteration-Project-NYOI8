@@ -10,7 +10,7 @@ const sqlController = {
         await fetch( 'https://sephora.p.rapidapi.com/categories/list', {
             params: {
                 categoryId: 'cat60099', //this we will hard code each time
-                pageSize: '20',
+                pageSize: '50',
                 currentPage: '1'
             },
             headers: {
