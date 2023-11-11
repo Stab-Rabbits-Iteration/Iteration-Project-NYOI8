@@ -1,27 +1,68 @@
 //sql
 const db = require('../models/productSqlModels.js')
 const fs = require('fs')
+const path = require('path')
+const axios = require('axios');
 
 const sqlController = {
 
     //choose product category (moisturizer, etc.)
-    initialScrape: async () => {
+    initialScrape: async (req, res, next) => {
+        console.log('in here')
+
+        // res.locals.fetcher = {guy: 2};
+        // return next();
   
-        await fetch( 'https://sephora.p.rapidapi.com/categories/list', {
+        // fetch( 'https://sephora.p.rapidapi.com/categories/list', {
+        //     method: 'GET',
+        //     params: {
+        //         categoryId: 'cat60099', //this we will hard code each time
+        //         pageSize: '50',
+        //         currentPage: '1'
+        //     },
+        //     headers: {
+        //         'X-RapidAPI-Key': '95f0f70e1bmsh5e365d235aea13ep10a60djsne0255bcdc733',
+        //         'X-RapidAPI-Host': 'sephora.p.rapidapi.com'
+        //     }
+        // })
+        // .then(res => res.json())
+        // .then(data => {
+        //     console.log('fecth done')
+        //     res.locals.fetcher = data;
+        //     console.log(data)
+        //     fs.writeFileSync(path.resolve(__dirname, './testDB.js'))
+        //      return next();
+        // })
+        // .catch(err => {
+        //     return next(err)
+        categoryId: 'cat60099'
+        // })
+
+        const options = {
+            method: 'GET',
+            url: 'https://sephora.p.rapidapi.com/us/products/v2/list',
             params: {
-                categoryId: 'cat60099', //this we will hard code each time
-                pageSize: '50',
+                categoryId: 'cat1230033',
+                pageSize: '60',
                 currentPage: '1'
             },
             headers: {
                 'X-RapidAPI-Key': '95f0f70e1bmsh5e365d235aea13ep10a60djsne0255bcdc733',
                 'X-RapidAPI-Host': 'sephora.p.rapidapi.com'
             }
-        })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
-        })
+        };
+            try {
+                const response = await axios.request(options);
+                console.log('were back from fecth')
+                console.log(response.data);
+                // console.log(response)
+                res.locals.fetcher = response.data;
+                fs.writeFileSync(path.resolve(__dirname, './testDB.js'), JSON.stringify(response.data))
+                next()
+            } catch (error) {
+                console.error(error);
+                return next(error)
+}
 
 
         //TEST:

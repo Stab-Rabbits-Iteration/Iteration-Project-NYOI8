@@ -3,15 +3,14 @@ const app = express();
 const path = require('path');
 const PORT = 3000;
 
+const sqlController = require('./controllers/sqlController')
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use('/client', express.static(path.resolve(__dirname, '../client')));
 
 
-app.get('/', (req,res)=>{
-    res.status().res.json('')
-})
 
 app.post('/login', (req,res)=>{
     res.status().res.json('')
@@ -25,10 +24,19 @@ app.get('/newuser', (req,res)=>{
     res.status().res.json('')
 })
 
-app.get('refresh', (req,res) => {
+app.get('/refresh', (req,res) => {
     res.status().res.json('')
 })
 
+app.get('/fetcher', sqlController.initialScrape, (req, res) => {
+    const data = res.locals.fetcher
+    // console.log('back out')
+    res.status(200).json(data)
+})
+
+app.get('/', (req,res)=>{
+    res.status().res.json('')
+})
 
 //Unknown route handler
 app.use('*', (req,res) => {
