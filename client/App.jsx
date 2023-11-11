@@ -1,9 +1,10 @@
 import React from 'react';
+import MainContainer from './containers/MainContainer.jsx';
 
 const App = () => {
   return (
     <>
-    <h1>Place holder</h1>
+      <MainContainer />
     </>
   );
 };

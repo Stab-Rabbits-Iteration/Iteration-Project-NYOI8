@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Borel&family=Lexend:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+body {
+  background-color: rgb(253, 220, 225);
+  font-family: Lexend;
+  display: flex;
+  justify-content: center;
+
+}
+
+#pageHeader {
+  font-family: Borel;
+  font-size: 2em;
+
+}
+
+
+
+.loginBox {
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+
+
+  #loginForm {
+    max-width: 500px;
+    min-width: 280px;
+    flex: 1 1 auto;
+    display: grid;
+    padding: 25px;
+    grid-template-columns: 1fr 5fr 1fr;
+    grid-template-rows: auto;
+    grid-gap: 25px;
+    border: 1px solid darkgray;
+
+    #loginHeaderBox {
+      grid-column: 2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #loginHeader {
+      font-family: Borel;
+      font-size: 2vw;
+    }
+
+    .inputField {
+      grid-column: 2;
+      display: flex;
+      flex-grow: 1;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #loginLink {
+      grid-column: 2;
+      grid-row: 4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px lightgrey;
+      border-radius: 15px;
+      padding: 5px;
+      background-color: skyblue;
+    }
+
+    #loginButton {
+      grid-column: 2;
+      width: 100%;
+      background-color: none;
+    }
+  }
+}
