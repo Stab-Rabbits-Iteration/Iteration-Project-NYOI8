@@ -36,6 +36,43 @@ app.get('/:firstName/:lastName', clientController.getClientInfo, (req, res) => {
     res.status(200).send(res.locals.clientObj);
 })
 
+
+app.get('/', (req,res)=>{
+    res.status().res.json('')
+})
+
+app.post('/login', (req,res)=>{
+    res.status().res.json('')
+})
+
+app.get('/newuser', (req,res)=>{
+    res.status().res.json('')
+})
+
+app.get('/refresh', (req,res) => {
+    res.status().res.json('')
+})
+
+
+//Unknown route handler
+app.use('*', (req,res) => {
+    res.status(404).send('Not Found');
+  });
+
+//Global error handler 
+app.use((err, req, res, next) => {
+    const defaultErr = {
+      log: 'Express error handler caught unknown middleware error',
+      status: 500,
+      message: { err: 'An error occurred' },
+    };
+    const errorObj = Object.assign({}, defaultErr, err);
+    console.log(errorObj.log);
+    return res.status(errorObj.status).json(errorObj.message);
+  });
+
+
+
 app.listen(PORT);
 
 module.exports = app;
