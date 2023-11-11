@@ -25,7 +25,7 @@ app.get('/newuser', (req,res)=>{
     res.status().res.json('')
 })
 
-app.get('refresh', (req,res) => {
+app.get('/refresh', (req,res) => {
     res.status().res.json('')
 })
 
