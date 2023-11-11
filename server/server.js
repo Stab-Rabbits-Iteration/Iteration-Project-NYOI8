@@ -2,9 +2,11 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const PORT = 3000;
-const mongoose = require('mongoose');
+const sqlController = require('./controllers/sqlController')
 
+const mongoose = require('mongoose');
 const clientController = require('./controllers/mongoController.js');
+
 
 const mongoURI = 'mongodb://localhost/scratchProject';
 const dbName = 'scratchProject';
@@ -37,9 +39,6 @@ app.get('/:firstName/:lastName', clientController.getClientInfo, (req, res) => {
 })
 
 
-app.get('/', (req,res)=>{
-    res.status().res.json('')
-})
 
 app.post('/login', (req,res)=>{
     res.status().res.json('')
@@ -53,6 +52,15 @@ app.get('/refresh', (req,res) => {
     res.status().res.json('')
 })
 
+app.get('/fetcher', sqlController.initialScrape, (req, res) => {
+    const data = res.locals.fetcher
+    // console.log('back out')
+    res.status(200).json(data)
+})
+
+app.get('/', (req,res)=>{
+    res.status().res.json('')
+})
 
 //Unknown route handler
 app.use('*', (req,res) => {
