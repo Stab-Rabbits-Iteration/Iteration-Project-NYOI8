@@ -16,4 +16,4 @@ root.render(
       <App />
     </Router>
   </Provider>
-);
+);;
