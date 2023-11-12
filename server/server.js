@@ -8,18 +8,18 @@ const mongoose = require('mongoose');
 const clientController = require('./controllers/mongoController.js');
 
 
-const mongoURI = 'mongodb://localhost/scratchProject';
-const dbName = 'scratchProject';
-mongoose.connect(mongoURI);
-mongoose.connection.once('open', () => {
-  console.log('Database connected: ', dbName);
-});
-mongoose.connection.on('error', (err) => {
-  console.error('connection error:', err);
-});
+// const mongoURI = 'mongodb://localhost/scratchProject';
+// const dbName = 'scratchProject';
+// mongoose.connect(mongoURI);
+// mongoose.connection.once('open', () => {
+//   console.log('Database connected: ', dbName);
+// });
+// mongoose.connection.on('error', (err) => {
+//   console.error('connection error:', err);
+// });
 
 app.use(express.json());
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }));
 
 app.use('/client', express.static(path.resolve(__dirname, '../client'))); // redirects to the homepage
 
