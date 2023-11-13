@@ -12,7 +12,6 @@ const InputForm = props => {
           <h2 id="loginHeader">Peau Humaine</h2>
         </div>
         <div className="inputField">
-
           <input type="text" name="username" placeholder="Enter Username" />
         </div>
         <div className="inputField">
