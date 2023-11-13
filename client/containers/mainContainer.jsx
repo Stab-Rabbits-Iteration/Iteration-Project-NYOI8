@@ -16,8 +16,8 @@ const MainContainer = (props) => {
       <Routes>
         // route base: loginContainer
         {/* <Route path="/" element={} /> */}
-        <Route path='/' element={<HomeContainer containerClass='homeContainer' navListId='navList' navListItemId='navListItem' />} />;
-        <Route path='/login' element={<LoginContainer containerClass='loginContainer' />} />;
+        <Route path='/' element={<LoginContainer containerClass='loginContainer' />} />;
+        <Route path='/home' element={<HomeContainer containerClass='homeContainer' navListId='navList' navListItemId='navListItem' />} />;
         // route 2: if no account or password is wrong
         // signupContainer
         // does this login need a slash or no?? Saw online that slash means that one loads first, but just to confirm
