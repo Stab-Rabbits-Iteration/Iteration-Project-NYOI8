@@ -4,7 +4,12 @@ const fs = require("fs");
 const path = require("path");
 const axios = require("axios");
 const testScrape = fs.readFileSync(
-  path.resolve(__dirname, "./fake-data/cleanserScrape.json")
+  path.resolve(__dirname, "./fake-data/cleanserScrape.json"),
+  "utf8"
+);
+const testProducts = fs.readFileSync(
+  path.resolve(__dirname, "./fake-data/productInfo.json"),
+  "utf8"
 );
 const parser = require("./fake-data/parsers.js");
 
@@ -148,8 +153,18 @@ const sqlController = {
   },
 
   productSQL: async (req, res, next) => {
-    const productInfo = res.locals.productInfo; //array of product objects
-    for (let product of productInfo) {
+    // const productInfo = res.locals.productInfo;
+    let productInfo = JSON.parse(testProducts); //array of product objects
+    // console.log(testProducts);
+    // productInfo = Object.assign({}, JSON.parse(productInfo));
+    // console.log(productInfo);
+    console.log("length is: ", productInfo.length);
+
+    let count = 24;
+
+    for (let i = count; i < count + 2; i++) {
+      let product = productInfo[i];
+      //   console.log(testProducts[product]);
       //add product to product table
       const productParams = [
         product.title,
@@ -165,21 +180,21 @@ const sqlController = {
                         VALUES ('${productParams[0]}', '${productParams[1]}', '${productParams[2]}', '${productParams[3]}', '${productParams[4]}', '${productParams[5]}');`;
 
       db.query(productQ);
-
-      const productSelect = `SELECT * FROM "products" WHERE name = '${productParams[0]}'`;
-      console.log("product params:", productParams[0]);
-      console.log(productParams);
-
-      const prod = await db.query(productSelect);
-
-      //   then((resp) => {
-      console.log("unpacking");
-      console.log(prod.rows);
-      // res.locals.productId = resp.rows;
-      // console.log(res.locals.productId);s
-      //   });
-      return next();
     }
+
+    //   const productSelect = `SELECT * FROM "products" WHERE name = '${productParams[0]}'`;
+    //   console.log("product params:", productParams[0]);
+    //   console.log(productParams);
+
+    //   const prod = await db.query(productSelect);
+
+    // .then((resp) => {
+    //   console.log("unpacking");
+    //   console.log(resp.rows);
+    //   // res.locals.productId = resp.rows;
+    //   // console.log(res.locals.productId);s
+    // });
+    return next();
   },
 
   ingredientSQL: (req, res, next) => {
@@ -208,35 +223,55 @@ const sqlController = {
     //create table with product id and its ingreident ids
   },
 
-  getProducts: (req, res, next) => {
-    const params = [];
-    const getQuery = ``;
-    const productListFromDB = db.query(getQuery, params);
+  getFaceWash: async (req, res, next) => {
+    const category = "Face Wash & Cleansers";
+
+    const catQuery = `SELECT * FROM "products" WHERE "category" = '${category}'`;
+    db.query(catQuery).then((resp) => {
+      console.log(res.locals);
+      res.locals.getFaceWash = resp.rows[0];
+      return next();
+    });
   },
 
-  addProduct: (product) => {
-    /*
-    
+  getEssence: (req, res, next) => {
+    const category = "Mists & Essences";
 
+    const catQuery = `SELECT * FROM "products" WHERE "category" = '${category}'`;
+    db.query(catQuery).then((resp) => {
+      res.locals.getEssence = resp.rows[0];
+      return next();
+    });
+  },
 
-    ingredientIds = []
-    for(let i of product.ingredient_list){
-        const param = [i]
-        db.query(`INSERT INTO ingredients (name) values ($1)`);
-        const id = db.query(`SELECT _id FROM ingredients WHERE name = i`)
-        ingredientIds.push(id)
-    }
+  getToner: (req, res, next) => {
+    const category = "Toners";
 
-    const params = [product.name, product.brand]
-    db.query(` INSERT INTO products (_id, name, brand_name, category, skin_type)
-  VALUES ('Test Product', 'Test Brand', 'Moisturizer', 'Sensitive')`)
+    const catQuery = `SELECT * FROM "products" WHERE "category" = '${category}'`;
+    db.query(catQuery).then((resp) => {
+      res.locals.getToner = resp.rows[0];
+      return next();
+    });
+  },
 
+  getNightCream: (req, res, next) => {
+    const category = "Night Creams";
 
+    const catQuery = `SELECT * FROM "products" WHERE "category" = '${category}'`;
+    db.query(catQuery).then((resp) => {
+      res.locals.getNightCream = resp.rows[0];
+      return next();
+    });
+  },
 
-*/
+  getSunscreen: (req, res, next) => {
+    const category = "Face Sunscreen";
 
-    const addQuery = ``;
-    const productListFromDB = db.query(addQuery);
+    const catQuery = `SELECT * FROM "products" WHERE "category" = '${category}'`;
+    db.query(catQuery).then((resp) => {
+      res.locals.getSunscreen = resp.rows[0];
+      return next();
+    });
   },
 };
 

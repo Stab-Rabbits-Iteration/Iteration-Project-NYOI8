@@ -53,13 +53,21 @@ app.get("/refresh", (req, res) => {
 
 app.get(
   "/fetcher",
-  sqlController.categoryScrape,
-  sqlController.productScrape,
+  sqlController.getFaceWash,
+  sqlController.getEssence,
+  sqlController.getToner,
+  sqlController.getNightCream,
+  sqlController.getSunscreen,
   (req, res) => {
-    // console.log("in here");
-    // const data = res.locals.fetcher;
+    const data = {};
+    data["Face Wash & Cleansers"] = res.locals.getFaceWash;
+    data["Mists & Essences"] = res.locals.getEssence;
+    data["Toners"] = res.locals.getToner;
+    data["Night Creams"] = res.locals.getNightCream;
+    data["Face Sunscreen"] = res.locals.getSunscreen;
+    console.log(data);
     console.log("back out");
-    res.status(200).json("great job");
+    res.status(200).json(data);
   }
 );
 
