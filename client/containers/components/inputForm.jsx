@@ -11,6 +11,7 @@ const InputForm = props => {
       <form id="loginForm">
         <div id="loginHeaderBox">
           <h2 id="loginHeader">Peau Humaine</h2>
+          <img id='loginHeaderImage' src={require('../../assets/images/skincare_products.png')} />
         </div>
         <div className="inputField">
           <input type="text" name="username" placeholder="Enter Username" />

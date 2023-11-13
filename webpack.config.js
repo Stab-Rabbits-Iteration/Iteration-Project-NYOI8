@@ -6,7 +6,9 @@ module.exports = {
   entry: './index.js',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    publicPath: '/',
+    path: path.resolve(__dirname, 'dist'),
+    assetModuleFilename: 'images/[name].[ext]'
   },
   devtool: 'eval-source-map',
   module: {

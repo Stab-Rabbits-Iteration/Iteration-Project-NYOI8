@@ -10,8 +10,8 @@ const LoginContainer = (props) => {
 
 
   return (
-    <div className='loginContainer'>
-      <InputForm />
+    <div className={props.containerClass}>
+      <InputForm componentClass='loginBox' />
     </div>
   )
 };

@@ -6,6 +6,10 @@ import { makeUser } from '../slices/userSlice';
 // import Preferences from './components/Preferences.jsx';
 import SignupForm from './components/signupForm.jsx';
 const SignupContainer = () => {
+import Preferences from './components/Preferences.jsx';
+
+const SignupContainer = (props) => {
+
 
   // const skinType = useSelector((state) => state.user.skinType);
   // const skinConditions = useSelector((state) => state.user.skinConditions);

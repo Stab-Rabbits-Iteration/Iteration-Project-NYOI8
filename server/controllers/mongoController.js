@@ -16,11 +16,11 @@ clientController.createClient = (req, res, next) => {
         // res.redirect('/:userName/:password');
         next();
     }
-    catch (err){
+    catch (err) {
         const error = {
             log: 'clientController.createClient',
             status: 400,
-            message: {err: err},
+            message: { err: err },
         };
         next(error);
     }
@@ -36,12 +36,12 @@ clientController.getClientInfo = async (req, res, next) => {
             console.log('res.locals.studentObj:', res.locals.clientObj);
             next();
         }
-    } 
-    catch (err){
+    }
+    catch (err) {
         const error = {
             log: 'userController.getUser',
             status: 400,
-            message: { err: err.message},
+            message: { err: err.message },
         };
         next(error);
     }
