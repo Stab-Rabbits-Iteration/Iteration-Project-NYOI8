@@ -11,9 +11,9 @@ const Preferences = props => {
 
       <SkinType typeClass="skinType" buttonClass="preferenceButton" />
 
-      <SkinConcern />
+      <SkinConcern concernClass="SkinConcern" buttonClass="concernsButton"/>
 
-      <Allergies />
+      <Allergies allergiesClass="allergies" inputClass="allergiesInput" />
 
     </div>
   )

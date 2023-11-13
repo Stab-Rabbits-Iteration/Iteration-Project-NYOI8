@@ -7,12 +7,12 @@ const SkinConcern = props => {
   return (
     <>
       <h3>Skin Concern:</h3>
-      <ul className="skinConcern">
-        <button>Oiliness</button>
-        <button>Dryness</button>
-        <button>Dullness</button>
-        <button>Pore Appearance</button>
-        <button>Acne and Blemishes</button>
+      <ul className={props.concernClass}>
+        <button className={props.concernButton}>Oiliness</button>
+        <button className={props.concernButton}>Dryness</button>
+        <button className={props.concernButton}>Dullness</button>
+        <button className={props.concernButton}>Pore Appearance</button>
+        <button className={props.concernButton}>Acne and Blemishes</button>
       </ul>
     </>
   )
