@@ -52,11 +52,25 @@ app.get("/login", clientController.getClientInfo, (req, res) => {
 //   res.status().res.json("");
 // });
 
-app.get("/fetcher", sqlController.initialScrape, (req, res) => {
-  const data = res.locals.fetcher;
-  // console.log('back out')
-  res.status(200).json(data);
-});
+app.get(
+  "/fetcher",
+  sqlController.getFaceWash,
+  sqlController.getEssence,
+  sqlController.getToner,
+  sqlController.getNightCream,
+  sqlController.getSunscreen,
+  (req, res) => {
+    const data = {};
+    data["Face Wash & Cleansers"] = res.locals.getFaceWash;
+    data["Mists & Essences"] = res.locals.getEssence;
+    data["Toners"] = res.locals.getToner;
+    data["Night Creams"] = res.locals.getNightCream;
+    data["Face Sunscreen"] = res.locals.getSunscreen;
+    console.log(data);
+    console.log("back out");
+    res.status(200).json(data);
+  }
+);
 
 app.get("/", (req, res) => {
   res.status().res.json("");
