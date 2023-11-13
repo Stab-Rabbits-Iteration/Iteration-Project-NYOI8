@@ -5,8 +5,10 @@ module.exports = {
   mode: process.env.NODE_ENV,
   entry: "./index.js",
   output: {
-    filename: "bundle.js",
-    path: path.resolve(__dirname, "dist"),
+    filename: 'bundle.js',
+    publicPath: '/',
+    path: path.resolve(__dirname, 'dist'),
+    assetModuleFilename: 'images/[name].[ext]'
   },
   devtool: "eval-source-map",
   module: {

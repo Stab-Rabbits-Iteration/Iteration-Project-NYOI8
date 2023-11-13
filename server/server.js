@@ -7,15 +7,15 @@ const sqlController = require("./controllers/sqlController");
 const mongoose = require("mongoose");
 const clientController = require("./controllers/mongoController.js");
 
-// const mongoURI = 'mongodb://localhost/scratchProject';
-// const dbName = 'scratchProject';
-// mongoose.connect(mongoURI);
-// mongoose.connection.once('open', () => {
-//   console.log('Database connected: ', dbName);
-// });
-// mongoose.connection.on('error', (err) => {
-//   console.error('connection error:', err);
-// });
+const mongoURI = 'mongodb://localhost:27017';
+const dbName = 'scratchProject';
+mongoose.connect(mongoURI);
+mongoose.connection.once('open', () => {
+  console.log('Database connected: ', dbName);
+});
+mongoose.connection.on('error', (err) => {
+  console.error('connection error:', err);
+});
 
 // const bodyParser = require('body-parser');
 // app.use(bodyParser.urlencoded({ extended: true }));
@@ -31,25 +31,26 @@ app.get("/signup", (req, res) => {
 });
 
 app.post("/signup", clientController.createClient, (req, res) => {
-  res.status(200).send(res.locals.clientObj);
+  console.log('client created');
+   res.redirect('/home');
 });
 
 // after logging in, our plan is to have a component to display userinfo so the endpoint would be '/'?
-app.get("/:firstName/:lastName", clientController.getClientInfo, (req, res) => {
+app.get("/login", clientController.getClientInfo, (req, res) => {
   res.status(200).send(res.locals.clientObj);
 });
 
-app.post("/login", (req, res) => {
-  res.status().res.json("");
-});
+// app.post("/login", (req, res) => {
+//   res.status().res.json("");
+// });
 
-app.get("/newuser", (req, res) => {
-  res.status().res.json("");
-});
+// app.get("/newuser", (req, res) => {
+//   res.status().res.json("");
+// });
 
-app.get("/refresh", (req, res) => {
-  res.status().res.json("");
-});
+// app.get("/refresh", (req, res) => {
+//   res.status().res.json("");
+// });
 
 app.get(
   "/fetcher",
