@@ -40,9 +40,21 @@ module.exports = {
         target: 'http://localhost:8080',
         router: () => 'http://localhost:3000'
       },
+      '/fetcher': {
+        target: 'http://localhost:8080',
+        router: () => 'http://localhost:3000'
+      },
+      '/login': {
+        target: 'http://localhost:8080',
+        router: () => 'http://localhost:3000'
+      },
+      '/signup': {
+        target: 'http://localhost:8080',
+        router: () => 'http://localhost:3000'
+      },
     },
   },
   plugins: [
     new HtmlWebpackPlugin({ title: 'webpackDev', fileName: 'index.html', template: path.resolve(__dirname, 'index.html') })
   ]
-}
+};
