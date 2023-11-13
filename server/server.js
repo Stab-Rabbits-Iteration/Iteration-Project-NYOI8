@@ -51,11 +51,17 @@ app.get("/refresh", (req, res) => {
   res.status().res.json("");
 });
 
-app.get("/fetcher", sqlController.initialScrape, (req, res) => {
-  const data = res.locals.fetcher;
-  // console.log('back out')
-  res.status(200).json(data);
-});
+app.get(
+  "/fetcher",
+  sqlController.categoryScrape,
+  sqlController.productScrape,
+  (req, res) => {
+    // console.log("in here");
+    // const data = res.locals.fetcher;
+    console.log("back out");
+    res.status(200).json("great job");
+  }
+);
 
 app.get("/", (req, res) => {
   res.status().res.json("");
