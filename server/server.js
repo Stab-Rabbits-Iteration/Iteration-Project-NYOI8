@@ -18,8 +18,12 @@ mongoose.connection.on('error', (err) => {
   console.error('connection error:', err);
 });
 
+// const bodyParser = require('body-parser');
+// app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.json());
 app.use(express.json());
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }));
+
 
 app.use('/client', express.static(path.resolve(__dirname, '../client'))); // redirects to the homepage
 
@@ -29,7 +33,6 @@ app.get('/signup', (req, res) => {
 });
 
 app.post('/signup', clientController.createClient, (req, res) => {
-  //this post request: creates a user based on its inputs
   res.status(200).send(res.locals.clientObj);
 });
 
@@ -84,8 +87,3 @@ app.use((err, req, res, next) => {
 app.listen(PORT);
 
 module.exports = app;
-
-//titan notes
-// get into the mongosh terminal via "mongosh" command
-// show dbs - command tha tshows databases
-// use "dbs" - creates a local db

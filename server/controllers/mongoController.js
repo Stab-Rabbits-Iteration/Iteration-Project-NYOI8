@@ -6,11 +6,11 @@ const clientController = {}
 clientController.createClient = (req, res, next) => {
     const { firstName, lastName, age, skinType, issues, allergies, toner, essence, moisturizer, spf } = req.body;
     try {
-        const newClient = { firstName: firstName, lastName: lastName, age: age, skinType: skinType, issues: issues, allergies: allergies, currentRoutine:{ toner: toner, essence: essence, moisturizer: moisturizer, spf: spf }}
-        console.log('newClient: ', newClient);
+        const newClient = { firstName: firstName, lastName: lastName, age: age, skinType: skinType, issues: issues, allergies: allergies, currentRoutine:{ toner: toner, essence: essence, moisturizer: moisturizer, spf: spf }};
         const clientObj = Client.create(newClient);
         // if we decide to send back the newClient information for verification purposes
-        res.locals.clientObj = clientObj;
+        res.locals.clientObj = newClient;
+        next();
     }
     catch (err){
         const error = {
@@ -20,7 +20,6 @@ clientController.createClient = (req, res, next) => {
         };
         next(error);
     }
-    next();
 }
 
 clientController.getClientInfo = async (req, res, next) => {

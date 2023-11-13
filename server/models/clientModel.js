@@ -13,7 +13,7 @@ const clientSchema = new Schema({
   //
   currentRoutine: {
     toner: { type: String },
-    essense: { type: String },
+    essence: { type: String },
     moisturizer: { type: String },
     spf: { type: String },
   },
