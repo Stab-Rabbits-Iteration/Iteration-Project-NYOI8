@@ -1,36 +1,36 @@
-//get the api key from openai
-const apiKey = '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';
+const fetch = require('node-fetch'); 
 
-//user skin type or allergy?
-const userSkinType = 'dry';
-const userAllergy = 'eczema';
+const API_URL = 'https://api.openai.com/v1/engines/davinci/completions';
+const API_KEY = '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';
 
-const userPrompt = `I have ${userSkinType} skin and my allergic type is ${userAllergy}. Can you recommend skincare products that are safe for me?`;
+async function getSkincareProductRecommendations(userSkinType, userSkinConcerns, userAllergies) {
+  const userPrompt = `I have ${userSkinType} skin, with skin concerns related to ${userSkinConcerns.join(', ')} and allergies to ${userAllergies.join(', ')}. Can you recommend skincare products that are safe for me?`;
 
-//API call
-fetch('https://api.openai.com/v1/engines/davinci/completions', {
-  method: 'POST',
-  headers: {
-    'Authorization': `Bearer ${apiKey}`,
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify({
-    prompt: userPrompt,
-    max_tokens: 100, // Adjust the number of tokens as needed
-  }),
-})
-.then(response => response.json())
-.then(data => {
-   // the generated text from the response 
-   const gpt3Recommendation = data.choices[0].text;
+  const requestOptions = {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${API_KEY}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      prompt: userPrompt,
+      max_tokens: 100, // Adjust the number of tokens as needed
+    },
+  )};
 
-   // Split the recommendation into separate product entries
-   const productEntries = gpt3Recommendation.split(', ');
+  try {
+    const response = await fetch(API_URL, requestOptions);
+    if (!response.ok) {
+      throw new Error(`GPT-3 API request failed with status: ${response.status}`);
+    }
 
-   // Parse product entries into JSON objects(only get the first 5 products from the productRecommendations)
-   const productRecommendations = productEntries.slice(0, 5).map(entry => {
-     const [name, category, ...activeIngredients] = entry.split(': ');
-     return {
+    const data = await response.json();
+    const gpt3Recommendation = data.choices[0].text;
+    const productEntries = gpt3Recommendation.split(', ');
+
+    const productRecommendations = productEntries.slice(0, 5).map(entry => {
+      const [name, category, ...activeIngredients] = entry.split(': ');
+      return {
         name,
         category,
         activeIngredients,
@@ -39,16 +39,10 @@ fetch('https://api.openai.com/v1/engines/davinci/completions', {
       };
     });
 
-    // Display product recommendations
-    productRecommendations.forEach(product => {
-        console.log('Product Name:', product.name);
-        console.log('Category:', product.category);
-        console.log('Active Ingredients:', product.activeIngredients.join(', '));
-        console.log('Skin Type:', product.skinType);
-        console.log('Description:', product.description);
-        console.log('------------------------');
-      });
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
+    return productRecommendations;
+  } catch (error) {
+    throw new Error(`GPT-3 API request failed: ${error.message}`);
+  }
+}
+
+module.exports = { getSkincareProductRecommendations };
