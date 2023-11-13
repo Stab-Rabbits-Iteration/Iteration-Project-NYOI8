@@ -19,10 +19,13 @@ const InputForm = props => {
         <div className="inputField">
           <input type="text" name="password" placeholder="Enter Password" />
         </div>
-        <Link id="loginLink">
+        <Link to='/home' id="loginLink">
           <button id="loginButton" type="button">Login</button>
         </Link>
       </form>
+      <Link to='/signup' id="signupLink">
+        <button id="signupButton" type="button">Sign Up</button>
+      </Link>
     </div>
   )
 }

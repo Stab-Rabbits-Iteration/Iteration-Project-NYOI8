@@ -54,6 +54,10 @@ module.exports = {
         target: "http://localhost:8080",
         router: () => "http://localhost:3000",
       },
+      "/home": {
+        target: "http://localhost:8080",
+        router: () => "http://localhost:3000",
+      },
       "https://sephora.p.rapidapi.com/": {
         target: "http://localhost:8080",
         router: () => "http://localhost:3000",

@@ -5,7 +5,6 @@ import { makeUser } from '../slices/userSlice';
 // import InputForm from './components/inputForm.jsx'
 // import Preferences from './components/Preferences.jsx';
 import SignupForm from './components/signupForm.jsx';
-const SignupContainer = () => {
 import Preferences from './components/Preferences.jsx';
 
 const SignupContainer = (props) => {

@@ -5,25 +5,25 @@ import Preferences from './Preferences.jsx';
 const SignupForm = (props) => {
 
 
-const makeUser = (e) => {
-  e.preventDefault();
-  fetch('/signup', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      userName: document.getElementById('username').value,
-      password: document.getElementById('password').value,
-      skinType: document.getElementById('skintype').value,
-    }),
-  })
-    .then((res) => res.json())
-    .then((data) => console.log('data', data))
-    .catch((err) => console.log(err));
-}
+  const makeUser = (e) => {
+    e.preventDefault();
+    fetch('/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        userName: document.getElementById('username').value,
+        password: document.getElementById('password').value,
+        skinType: document.getElementById('skintype').value,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log('data', data))
+      .catch((err) => console.log(err));
+  }
 
-  
+
   return (
     <div className='loginBox'>
       <form id='signupForm' onSubmit={makeUser}>
@@ -72,11 +72,11 @@ const makeUser = (e) => {
         </div>
 
       </form> */}
-      <form>
-        <p>Type: Normal, Dry, Oily, or Combination</p>
-        <input type='text' name='skintype' placeholder='Choose Skin Type' id="skintype" />
-      </form>
-{/* 
+          <form>
+            <p>Type: Normal, Dry, Oily, or Combination</p>
+            <input type='text' name='skintype' placeholder='Choose Skin Type' id="skintype" />
+          </form>
+          {/* 
           <h3>Skin Type</h3>
           <ul className='Skin Type'>
             <input type='text' />
