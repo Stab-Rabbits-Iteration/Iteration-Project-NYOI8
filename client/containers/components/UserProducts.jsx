@@ -5,9 +5,9 @@ const UserProducts = props => {
 
 
   return (
-    <div>
+    <div className={props.productClass}>
       {/* render userItems here */}
-      <UserItems />
+      <UserItems itemClass="userItem" imageClass="userItemImage" />
     </div>
 
   )
