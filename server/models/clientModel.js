@@ -12,6 +12,7 @@ const clientSchema = new Schema({
   allergies: { type: String },
   //
   currentRoutine: {
+    cleanser: { type: String },
     toner: { type: String },
     essence: { type: String },
     moisturizer: { type: String },

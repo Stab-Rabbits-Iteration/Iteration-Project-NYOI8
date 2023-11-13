@@ -18,31 +18,86 @@ body {
 
 #root {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   width: 100%;
 }
 
 .mainContainer {
-  display: flex;
+  display: grid;
   width: 100%;
-}
+  grid-template-columns: 1fr 190px 12fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+    ". head . ."
+    ". home home . ";
 
-#navbar {
-  justify-content: space-between;
-}
-
-ul {
-  display: flex;
-  justify-self: flex-end;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-
-  li {
-    justify-self: flex-end;
+  #pageHeader {
+    margin-top: 8px;
+    grid-area: head;
+    font-size: 1.6rem;
   }
 
+
 }
+
+.homeContainer {
+  grid-area: home;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+    ". nav"
+    "user user";
+
+  #navbar {
+    grid-area: nav;
+    display: flex;
+    justify-content: flex-end;
+
+    #navList {
+      display: flex;
+      justify-self: flex-end;
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      gap: 10px;
+
+      .navListItem {
+        justify-self: flex-end;
+      }
+
+    }
+  }
+
+  .userProfile {
+    grid-area: user;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "prods recs";
+
+    .userProducts {
+      grid-area: prods;
+
+    }
+
+    .recommendations {
+      grid-area: recs;
+    }
+
+  }
+
+
+
+
+
+}
+
+
+
+
 
 .loginBox {
   display: flex;
