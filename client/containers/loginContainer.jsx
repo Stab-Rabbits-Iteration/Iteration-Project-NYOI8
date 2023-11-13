@@ -11,7 +11,7 @@ const LoginContainer = (props) => {
 
   return (
     <div className={props.containerClass}>
-      <InputForm />
+      <InputForm componentClass='loginBox' />
     </div>
   )
 };

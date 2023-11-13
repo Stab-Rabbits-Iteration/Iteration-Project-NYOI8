@@ -11,7 +11,7 @@ const MainContainer = (props) => {
   return (
     <div className={props.containerClass}>
       {/* Either input container or home container goes here... may make sense to use react router to render different components */}
-      <header id={props.headerId}><em>Peau Humaine</em></header>
+      <header id={props.headerId}><p><em>Peau Humaine</em></p><img className='headerImage' src={require('../assets/images/skincare_products.png')} /></header>
 
       <Routes>
         // route base: loginContainer
