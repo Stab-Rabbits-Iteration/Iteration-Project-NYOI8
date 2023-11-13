@@ -1,10 +1,10 @@
 import React from 'react';
-import MainContainer from './containers/mainContainer.jsx';
+import MainContainer from './containers/MainContainer.jsx';
 
 const App = () => {
   return (
     <>
-      <MainContainer />
+      <MainContainer containerClass='mainContainer' headerId='pageHeader' />
     </>
   );
 };
