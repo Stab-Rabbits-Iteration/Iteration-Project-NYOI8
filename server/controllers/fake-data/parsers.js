@@ -21,7 +21,7 @@ const ingredientParse = (str) => {
   let subString = str.slice(idx);
   let ingredients = subString.slice(0, subString.indexOf("."));
 
-  return ingredients.split(",");
+  return ingredients.split(", ");
 };
 
 const skinTypeParse = (str) => {

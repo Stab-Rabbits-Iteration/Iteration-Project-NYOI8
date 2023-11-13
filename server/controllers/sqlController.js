@@ -61,9 +61,9 @@ const sqlController = {
     let count = 0; //to comment
     for (let obj of productList) {
       let id = obj.productId;
-    //   console.log(id);
+      //   console.log(id);
       let sku = obj.currentSku.skuId;
-    //   console.log(sku);
+      //   console.log(sku);
       productSkus[id] = sku;
       if (count++ > 3) break; //to comment
     }
@@ -94,6 +94,7 @@ const sqlController = {
         const title = data.productDetails.displayName;
         const brand = data.productDetails.brand.displayName;
         const skin = data.productDetails.longDescription;
+        //const image = data.currentSku.skuImages.imageUrl
         //skinParse(skin)
         // console.log("title: ", title, "\nbrand: ", brand, "\nskin: ", skin);
 
