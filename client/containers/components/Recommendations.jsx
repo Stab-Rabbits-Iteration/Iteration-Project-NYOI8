@@ -6,7 +6,8 @@ const Recommendations = props => {
 
   return (
     <div className={props.recommendationsClass}>
-      <RecommendedItem />
+      <h2>Your Recommendations:</h2>
+      <RecommendedItem componentClass="recommendedItem" imageClass="recommendedItemImage" />
     </div>
   )
 

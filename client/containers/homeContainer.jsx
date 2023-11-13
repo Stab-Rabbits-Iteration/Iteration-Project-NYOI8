@@ -12,7 +12,6 @@ const HomeContainer = (props) => {
         <ul id={props.navListId}>
           <li className={props.navListItemId}><Link to="/login" >Login</Link></li>
           <li className={props.navListItemId}><Link to="/signup">Sign Up</Link></li>
-
         </ul>
       </nav>
       <UserProfile componentClass='userProfile' />
