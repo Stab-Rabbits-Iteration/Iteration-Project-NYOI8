@@ -6,16 +6,26 @@ const SkinConcern = props => {
 
   return (
     <>
-      <h3>Skin Concern:</h3>
-      <ul className="skinConcern">
-        <button>Oiliness</button>
-        <button>Dryness</button>
-        <button>Dullness</button>
-        <button>Pore Appearance</button>
-        <button>Acne and Blemishes</button>
-      </ul>
+      <h3>Skin Concerns:</h3>
+      <form className='skinConcern'>
+        <input type='checkbox' className={props.buttonClass} />
+        <label for='Oiliness'>Oiliness</label>
+        <br></br>
+
+        <input type='checkbox' className={props.buttonClass} />
+        <label for='Dullness'>Dullness</label>
+        <br></br>
+
+        <input type='checkbox' className={props.buttonClass} />
+        <label for='Pore Appearance'>Pore Appearance </label>
+        <br></br>
+
+        <input type='checkbox' className={props.buttonClass} />
+        <label for='Dryness'>Dryness</label>
+        <br></br>
+      </form>
     </>
-  )
+  );
 }
 
 export default SkinConcern;

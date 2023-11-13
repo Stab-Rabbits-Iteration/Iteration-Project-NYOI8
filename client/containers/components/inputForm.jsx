@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 const InputForm = props => {
 
 
+
   return (
     <div className="loginBox">
       <form id="loginForm">
@@ -15,7 +16,7 @@ const InputForm = props => {
           <input type="text" name="username" placeholder="Enter Username" />
         </div>
         <div className="inputField">
-          <input type="password" name="username" placeholder="Enter Password" />
+          <input type="text" name="password" placeholder="Enter Password" />
         </div>
         <Link id="loginLink">
           <button id="loginButton" type="button">Login</button>
