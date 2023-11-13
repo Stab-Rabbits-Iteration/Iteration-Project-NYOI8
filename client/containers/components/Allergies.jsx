@@ -7,10 +7,10 @@ const Allergies = props => {
   return (
     <>
       <h3>Allergies</h3>
-      <ul className="Allergies" >
-        <input type="text" />
-        <input type="text" />
-        <input type="text" />
+      <ul className={props.allergies} >
+        <input type="text" className={props.allergiesInput} />
+        <input type="text" className={props.allergiesInput} />
+        <input type="text" className={props.allergiesInput} />
       </ul>
     </>
   )
