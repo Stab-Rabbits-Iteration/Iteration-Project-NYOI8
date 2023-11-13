@@ -10,11 +10,12 @@ const MainContainer = () => {
 
   return (
     <div className="mainContainer">
-      <header id="pageHeader"><em>Peau Humaine</em></header>
       {/* Either input container or home container goes here... may make sense to use react router to render different components */}
+      <header id="pageHeader"><em>Peau Humaine</em></header>
+      <HomeContainer />
       <Routes>
         // route base: loginContainer
-        <Route path="/" element={<HomeContainer />} />
+        {/* <Route path="/" element={} /> */}
         <Route path='/login' element={<LoginContainer />} />;
         // route 2: if no account or password is wrong
         // signupContainer
