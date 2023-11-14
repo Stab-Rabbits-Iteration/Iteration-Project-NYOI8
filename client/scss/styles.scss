@@ -244,12 +244,17 @@ body {
     }
   }
 
-
-
 }
 
-// .signupPage {
-//   margin-left: auto;
-//   marign-right: auto;
-// }
+.product {
+  border: 1px solid black;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
+  img {
+    width: 200px;
+    height: auto;
+  }
+}

@@ -3,11 +3,15 @@ import React from "react";
 
 const UserItems = props => {
 
+  //  // itemClass = { productClass } src = { data[key].img_url } skinCondition = { data[key].skin_concern } skinType = { data[key].skin_type } productName = { data[key].name } productBrand = { data[key].brand_name }
+
+  console.log(props.src)
 
   return (
     <div className={props.itemClass}>
-      <p>Current user routine *Insert Prod Type*</p>
-      <img className={props.imageClass} src="https://static.vecteezy.com/system/resources/previews/002/476/287/original/3d-realistic-natural-beauty-cosmetic-product-for-face-or-body-care-on-glossy-background-free-vector.jpg" />
+      <p>{props.productName}</p>
+      <p>Current user routine {props.productClass}*</p>
+      <img className={props.productClass} src={props.src} />
     </div>
   );
 };
