@@ -1,8 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Preferences from './Preferences.jsx';
+import { useState } from 'react';
 
 const SignupForm = (props) => {
+
+  // const [skinTypes, setSkinTypes] = useState
 
 
   const makeUser = (e) => {
@@ -16,6 +19,9 @@ const SignupForm = (props) => {
         userName: document.getElementById('username').value,
         password: document.getElementById('password').value,
         skinType: document.getElementById('skintype').value,
+        issues: document.getElementById('issues').value,
+        allergies: document.getElementById('allergies').value,
+
       }),
     })
       .then((res) => res.json())
@@ -25,7 +31,7 @@ const SignupForm = (props) => {
 
 
   return (
-    <div className='loginBox'>
+    <div className={props.componentClass}>
       <form id='signupForm' onSubmit={makeUser}>
         <div id='signupHeaderBox'>
           <h2 id='signupHeader'>Peau Humaine</h2>
@@ -76,6 +82,19 @@ const SignupForm = (props) => {
             <p>Type: Normal, Dry, Oily, or Combination</p>
             <input type='text' name='skintype' placeholder='Choose Skin Type' id="skintype" />
           </form>
+
+           <form>
+            <p>Any Skin Concerns? Oiliness, Dullness, Pore Appearance, or Dryness?</p>
+            <input type='text' name='issues' placeholder='Any Skin Concerns?' id="issues" />
+          </form>
+
+          <h3>Allergies?</h3>
+          <ul id='allergies'>
+            <input type='text' />
+            <input type='text' />
+            <input type='text' />
+          </ul>
+          
           {/* 
           <h3>Skin Type</h3>
           <ul className='Skin Type'>
@@ -116,12 +135,13 @@ const SignupForm = (props) => {
         </div>
 
         <br />
-        {/* <Link id='signupLink'>
-          <button id='signupButton' type='button'>
-            Sign Up
-          </button>
-        </Link> */}
         <input type='submit' value='Create User' />
+        <Link to={'/home'} id='signupLink'>
+          <button id='signupButton' type='button'>
+           Home
+          </button>
+        </Link>
+
       </form>
     </div>
   );
