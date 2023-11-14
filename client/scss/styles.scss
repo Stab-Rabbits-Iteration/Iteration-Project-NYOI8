@@ -32,7 +32,8 @@ body {
     ". head head . ."
     ". home home home . "
     ". . nav nav . "
-    ". . login . .";
+    ". . login . ."
+    ". signup signup signup . ";
 
 
   #pageHeader {
@@ -143,7 +144,20 @@ body {
     }
   }
 
+}
 
+.signupContainer {
+  grid-area: signup;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .signupBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+  }
 }
 
 .homeContainer {
@@ -230,4 +244,12 @@ body {
     }
   }
 
+
+
 }
+
+// .signupPage {
+//   margin-left: auto;
+//   marign-right: auto;
+// }
+

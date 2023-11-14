@@ -17,8 +17,8 @@ const SignupContainer = (props) => {
   // const dispatch = useDispatch();
 
   return (
-    <div>
-      <SignupForm />
+    <div className={props.containerClass}>
+      <SignupForm componentClass='signUpBox'/>
     </div>
   );
 };

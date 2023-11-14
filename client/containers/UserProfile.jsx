@@ -12,8 +12,8 @@ const UserProfile = (props) => {
 
   // )
 
-  const parsedRes = response.json()
-  console.log(parsedRes);
+  // const parsedRes = response.json()
+  // console.log(parsedRes);
 
   return (
 

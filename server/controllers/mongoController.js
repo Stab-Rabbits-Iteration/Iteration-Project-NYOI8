@@ -8,7 +8,7 @@ clientController.createClient = (req, res, next) => {
     const { userName, password, skinType, issues, allergies, toner, essence, moisturizer, spf } = req.body;
     try {
         console.log("I am inside TRY");
-        const newClient = { userName: userName, password: password, skinType: req.body.skinType, issues: issues, allergies: allergies, currentRoutine:{ toner: toner, essence: essence, moisturizer: moisturizer, spf: spf }};
+        const newClient = { userName: userName, password: password, skinType: skinType, issues: issues, allergies: allergies, currentRoutine:{ toner: toner, essence: essence, moisturizer: moisturizer, spf: spf }};
         const clientObj = Client.create(newClient);
         // if we decide to send back the newClient information for verification purposes
         console.log('I am new client', newClient);
