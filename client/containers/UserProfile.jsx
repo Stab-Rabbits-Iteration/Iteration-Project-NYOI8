@@ -3,17 +3,6 @@ import UserProducts from "./components/UserProducts.jsx";
 import Recommendations from "./components/Recommendations.jsx";
 
 const UserProfile = (props) => {
-  // const response = fetch('/fetcher', {
-  //   method: 'GET',
-  //   headers: {
-  //     'Content-Type': 'application/json'
-  //   }
-  // }).then(
-
-  // )
-
-  const parsedRes = response.json()
-  console.log(parsedRes);
 
   return (
 
