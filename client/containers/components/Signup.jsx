@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../../scss/signup.scss';
 
 const Signup = () => {
   // keep track of what the user types as its username and password in the form
@@ -43,7 +44,7 @@ const Signup = () => {
           placeholder="password"
           value={password}
         />
-        <input type="submit" value="Sign Up" />
+        <input id="signup-btn" type="submit" value="Sign Up" />
       </form>
     </div>
   );
