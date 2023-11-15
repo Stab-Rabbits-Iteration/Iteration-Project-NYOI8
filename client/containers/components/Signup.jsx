@@ -24,28 +24,31 @@ const Signup = () => {
   };
 
   return (
-    <div className="signUp-box">
-      <form id="signupForm" onSubmit={makeUser}>
-        <input
-          name="username"
-          type="text"
-          onChange={(e) => {
-            setUsername(e.target.value);
-          }}
-          placeholder="username"
-          value={username}
-        />
-        <input
-          name="password"
-          type="text"
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-          placeholder="password"
-          value={password}
-        />
-        <input id="signup-btn" type="submit" value="Sign Up" />
-      </form>
+    <div className="signUp-Container">
+      <h2>Create a Peau Account</h2>
+      <div className="signUp-box">
+        <form id="signupForm" onSubmit={makeUser}>
+          <input
+            name="username"
+            type="text"
+            onChange={(e) => {
+              setUsername(e.target.value);
+            }}
+            placeholder="username"
+            value={username}
+          />
+          <input
+            name="password"
+            type="text"
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+            placeholder="password"
+            value={password}
+          />
+          <input id="signup-btn" type="submit" value="Sign Up" />
+        </form>
+      </div>
     </div>
   );
 };
