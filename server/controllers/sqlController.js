@@ -1,45 +1,45 @@
-//sql
-const db = require("../models/productSqlModels.js");
-const fs = require("fs");
-const path = require("path");
-const axios = require("axios");
+// sql
+const db = require('../models/productSqlModel.js');
+const fs = require('fs');
+const path = require('path');
+const axios = require('axios');
 const testScrape = fs.readFileSync(
-  path.resolve(__dirname, "./fake-data/cleanserScrape.json"),
-  "utf8"
+  path.resolve(__dirname, './fake-data/cleanserScrape.json'),
+  'utf8'
 );
 const testProducts = fs.readFileSync(
-  path.resolve(__dirname, "./fake-data/productInfo.json"),
-  "utf8"
+  path.resolve(__dirname, './fake-data/productInfo.json'),
+  'utf8'
 );
-const parser = require("./fake-data/parsers.js");
+const parser = require('./fake-data/parsers.js');
 
 const sqlController = {
-  //choose product category (moisturizer, etc.)
+  // choose product category (moisturizer, etc.)
   categoryScrape: async (req, res, next) => {
-    console.log("in here");
+    console.log('in here');
 
-    const productSkus = {}; //productId: 'P411387', preferedSku: '1863588'
-    //will be an object like {P411387: 1863588}
+    const productSkus = {}; // productId: 'P411387', preferedSku: '1863588'
+    // will be an object like {P411387: 1863588}
 
     // res.locals.fetcher = {guy: 2};
     // return next();
 
     const options = {
-      method: "GET",
-      url: "https://sephora.p.rapidapi.com/us/products/v2/list",
+      method: 'GET',
+      url: 'https://sephora.p.rapidapi.com/us/products/v2/list',
       params: {
-        categoryId: "cat920033",
-        pageSize: "5",
-        currentPage: "2",
+        categoryId: 'cat920033',
+        pageSize: '5',
+        currentPage: '2'
       },
       headers: {
-        "X-RapidAPI-Key": "046dd891dbmsh2d4484a6c2e435ep148753jsn788ef8bbfd27",
-        "X-RapidAPI-Host": "sephora.p.rapidapi.com",
-      },
+        'X-RapidAPI-Key': '046dd891dbmsh2d4484a6c2e435ep148753jsn788ef8bbfd27',
+        'X-RapidAPI-Host': 'sephora.p.rapidapi.com'
+      }
     };
     try {
       const response = await axios.request(options);
-      console.log("were back from fecth");
+      console.log('were back from fecth');
       //   console.log(response.data);
       // console.log(response)
 
@@ -64,7 +64,7 @@ const sqlController = {
       //   );
 
       res.locals.productSkus = productSkus;
-      console.log("product skus: ", productSkus);
+      console.log('product skus: ', productSkus);
       return next();
     } catch (error) {
       console.error(error);
@@ -88,27 +88,27 @@ const sqlController = {
     const productSkus = res.locals.productSkus;
     const productInfo = [];
 
-    console.log("in product scrape");
+    console.log('in product scrape');
 
     for (let id in productSkus) {
       const product = {
-        method: "GET",
-        url: "https://sephora.p.rapidapi.com/us/products/v2/detail",
+        method: 'GET',
+        url: 'https://sephora.p.rapidapi.com/us/products/v2/detail',
         params: {
           productId: id,
-          preferedSku: productSkus[id],
+          preferedSku: productSkus[id]
         },
         headers: {
-          "X-RapidAPI-Key":
-            "046dd891dbmsh2d4484a6c2e435ep148753jsn788ef8bbfd27",
-          "X-RapidAPI-Host": "sephora.p.rapidapi.com",
-        },
+          'X-RapidAPI-Key':
+            '046dd891dbmsh2d4484a6c2e435ep148753jsn788ef8bbfd27',
+          'X-RapidAPI-Host': 'sephora.p.rapidapi.com'
+        }
       };
       try {
-        console.log("bout to fetch");
+        console.log('bout to fetch');
         // const ready = await setTimeout(() => {}, 500);
         const response = await axios.request(product);
-        console.log("were back from product fetch");
+        console.log('were back from product fetch');
         const data = response.data;
         // console.log(data);
 
@@ -123,7 +123,7 @@ const sqlController = {
         const skinConcern = parser.skinConcernParse(skin);
 
         const rawDescription = data.currentSku?.ingredientDesc;
-        console.log(rawDescription); //need to delete up to <br><br> then array of ingredient to comma
+        console.log(rawDescription); // need to delete up to <br><br> then array of ingredient to comma
         const ingredientArray = parser.ingredientParse(rawDescription);
 
         productInfo.push({
@@ -134,45 +134,45 @@ const sqlController = {
           skinType,
           skinConcern,
           //   skin,
-          ingredientArray,
+          ingredientArray
         });
-        console.log("moving on");
+        console.log('moving on');
       } catch (error) {
         console.error(error);
         return next(error);
       }
     }
     fs.appendFileSync(
-      path.resolve(__dirname, "./fake-data/productInfo.json"),
+      path.resolve(__dirname, './fake-data/productInfo.json'),
       JSON.stringify(productInfo)
     );
-    console.log("bout to leave...");
+    console.log('bout to leave...');
     res.locals.productInfo = productInfo;
-    res.locals.fetcher = "great job"; //data
+    res.locals.fetcher = 'great job'; // data
     return next();
   },
 
   productSQL: async (req, res, next) => {
     // const productInfo = res.locals.productInfo;
-    let productInfo = JSON.parse(testProducts); //array of product objects
+    let productInfo = JSON.parse(testProducts); // array of product objects
     // console.log(testProducts);
     // productInfo = Object.assign({}, JSON.parse(productInfo));
     // console.log(productInfo);
-    console.log("length is: ", productInfo.length);
+    console.log('length is: ', productInfo.length);
 
     let count = 24;
 
     for (let i = count; i < count + 2; i++) {
       let product = productInfo[i];
       //   console.log(testProducts[product]);
-      //add product to product table
+      // add product to product table
       const productParams = [
         product.title,
         product.brand,
         product.category,
         product.skinType,
         product.skinConcern,
-        product.imageUrl,
+        product.imageUrl
       ];
       console.log(productParams);
       const productQ = `INSERT INTO "products" 
@@ -215,16 +215,16 @@ const sqlController = {
     // .then(() => next())
     // .catch((err) => next(err));
 
-    //add all individual ingredients to the ingredient table if it doesn't exist
+    // add all individual ingredients to the ingredient table if it doesn't exist
 
     //   console.log(productId);
     //   console.log(ingredientIDs);
 
-    //create table with product id and its ingreident ids
+    // create table with product id and its ingreident ids
   },
 
   getFaceWash: async (req, res, next) => {
-    const category = "Face Wash & Cleansers";
+    const category = 'Face Wash & Cleansers';
 
     const catQuery = `SELECT * FROM "products" WHERE "category" = '${category}'`;
     db.query(catQuery).then((resp) => {
@@ -235,7 +235,7 @@ const sqlController = {
   },
 
   getEssence: (req, res, next) => {
-    const category = "Mists & Essences";
+    const category = 'Mists & Essences';
 
     const catQuery = `SELECT * FROM "products" WHERE "category" = '${category}'`;
     db.query(catQuery).then((resp) => {
@@ -245,7 +245,7 @@ const sqlController = {
   },
 
   getToner: (req, res, next) => {
-    const category = "Toners";
+    const category = 'Toners';
 
     const catQuery = `SELECT * FROM "products" WHERE "category" = '${category}'`;
     db.query(catQuery).then((resp) => {
@@ -255,7 +255,7 @@ const sqlController = {
   },
 
   getNightCream: (req, res, next) => {
-    const category = "Night Creams";
+    const category = 'Night Creams';
 
     const catQuery = `SELECT * FROM "products" WHERE "category" = '${category}'`;
     db.query(catQuery).then((resp) => {
@@ -265,14 +265,14 @@ const sqlController = {
   },
 
   getSunscreen: (req, res, next) => {
-    const category = "Face Sunscreen";
+    const category = 'Face Sunscreen';
 
     const catQuery = `SELECT * FROM "products" WHERE "category" = '${category}'`;
     db.query(catQuery).then((resp) => {
       res.locals.getSunscreen = resp.rows[0];
       return next();
     });
-  },
+  }
 };
 
 module.exports = sqlController;
