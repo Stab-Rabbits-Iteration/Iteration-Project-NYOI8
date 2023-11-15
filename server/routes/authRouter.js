@@ -1,7 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
-//Signup
+const userController = require('../controllers/userController');
+const sessionController = require('../controllers/sessionController');
+
+// Signup
 // router.get('/signup', (req, res) => {
 //   res.sendFile(path.resolve(__dirname, '../client/signup.html'));
 // });
@@ -16,7 +19,7 @@ router.post(
   }
 );
 
-//login
+// login
 router.post(
   '/login',
   userController.verifyUser,
@@ -26,7 +29,7 @@ router.post(
   }
 );
 
-/////Old Code/////////
+// ///Old Code/////////
 // router.get('/signup', (req, res) => {
 //   // this function serves the signup html when directed to the signup page
 //   res.sendFile(path.resolve(__dirname, '../client.signup.html'));

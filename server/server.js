@@ -3,38 +3,37 @@ const app = express();
 const path = require('path');
 const PORT = 3000;
 
-//??
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-//Define the static file
+// Define the static file
 app.use('/client', express.static(path.resolve(__dirname, '../client')));
 
-//Declare the routes
+// Declare the routes
 const authRouter = require('./routes/authRouter.js');
 const apiRouter = require('./routes/apiRouter.js');
 
-//Define route handlers
+// Define route handlers
 app.use('/auth', authRouter);
 app.use('/api', apiRouter);
 
-//Define root
+// Define root
 app.get('/', (req, res) => {
   // res.status().res.json("");
   res.sendFile(path.resolve(__dirname, '../index.html'));
 });
 
-//Unknown route handler
+// Unknown route handler
 app.use('*', (req, res) => {
   res.status(404).send('Not Found');
 });
 
-//Global error handler
+// Global error handler
 app.use((err, req, res, next) => {
   const defaultErr = {
     log: 'Express error handler caught unknown middleware error',
     status: 500,
-    message: { err: 'An error occurred' },
+    message: { err: 'An error occurred' }
   };
   const errorObj = Object.assign({}, defaultErr, err);
   console.log(errorObj.log);
