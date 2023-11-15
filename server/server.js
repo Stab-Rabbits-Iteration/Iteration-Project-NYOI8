@@ -4,18 +4,18 @@ const path = require("path");
 const PORT = 3000;
 const sqlController = require("./controllers/sqlController");
 
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 const clientController = require("./controllers/mongoController.js");
 
-const mongoURI = 'mongodb://localhost:27017';
-const dbName = 'scratchProject';
-mongoose.connect(mongoURI);
-mongoose.connection.once('open', () => {
-  console.log('Database connected: ', dbName);
-});
-mongoose.connection.on('error', (err) => {
-  console.error('connection error:', err);
-});
+// const mongoURI = '';
+// const dbName = 'scratchProject';
+// mongoose.connect(mongoURI);
+// mongoose.connection.once('open', () => {
+//   console.log('Database connected: ', dbName);
+// });
+// mongoose.connection.on('error', (err) => {
+//   console.error('connection error:', err);
+// });
 
 // const bodyParser = require('body-parser');
 // app.use(bodyParser.urlencoded({ extended: true }));

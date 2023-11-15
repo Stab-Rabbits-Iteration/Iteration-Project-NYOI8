@@ -38,30 +38,7 @@ module.exports = {
       directory: path.resolve(__dirname, "dist"),
     },
     proxy: {
-      "/dist": {
-        target: "http://localhost:8080",
-        router: () => "http://localhost:3000",
-      },
-      "/fetcher": {
-        target: "http://localhost:8080",
-        router: () => "http://localhost:3000",
-      },
-      "/login": {
-        target: "http://localhost:8080",
-        router: () => "http://localhost:3000",
-      },
-      "/signup": {
-        target: "http://localhost:8080",
-        router: () => "http://localhost:3000",
-      },
-      "/home": {
-        target: "http://localhost:8080",
-        router: () => "http://localhost:3000",
-      },
-      "https://sephora.p.rapidapi.com/": {
-        target: "http://localhost:8080",
-        router: () => "http://localhost:3000",
-      },
+      "/**": "http://localhost:8080",
     },
   },
   plugins: [
