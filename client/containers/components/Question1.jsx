@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 // import Question2 from './Question2.jsx';
-const Question1 = () => {
-  const [product, setProduct] = useState('');
+const Question1 = ({ setProduct }) => {
+  // const [product, setProduct] = useState('');
   const [open, setOpen] = useState(false);
+  console.log(setProduct);
 
   return (
     <div>
@@ -15,13 +16,7 @@ const Question1 = () => {
       </button>
       {open && (
         <div>
-          <button
-            onClick={() => {
-              setProduct('face wash');
-            }}
-          >
-            face wash
-          </button>
+          <button onClick={() => {setProduct('face wash')}}>face wash</button>
           <button
             onClick={() => {
               setProduct('lotion');
@@ -38,7 +33,7 @@ const Question1 = () => {
           </button>
         </div>
       )}
-      <p>click submit after picking!</p>
+      {/* <p>click submit after picking!</p> */}
     </div>
   );
 };

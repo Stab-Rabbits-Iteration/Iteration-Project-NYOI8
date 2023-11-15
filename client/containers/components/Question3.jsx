@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import SearchResults from './SearchResults.jsx';
 
-const Question3 = () => {
+const Question3 = ({ setPrice }) => {
   const [open, setOpen] = useState(false);
-  const [price, setPrice] = useState('');
+  // const [price, setPrice] = useState('');
 
   return (
     <div>
@@ -39,7 +39,7 @@ const Question3 = () => {
           </button>
         </div>
       )}
-      <p>click submit after clicking!</p>
+      {/* <p>click submit after clicking!</p> */}
     </div>
   );
 };

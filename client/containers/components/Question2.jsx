@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import Question3 from './Question3.jsx';
 
-const Question2 = () => {
+const Question2 = ({setSkinType}) => {
   const [open, setOpen] = useState(false);
-  const [skinType, setSkinType] = useState('');
+  // const [skinType, setSkinType] = useState('');
 
   return (
     <div>
@@ -32,7 +32,7 @@ const Question2 = () => {
           </button>
         </div>
       )}
-      <p>click submit after picking!</p>
+      {/* <p>click submit after picking!</p> */}
     </div>
   );
 };
