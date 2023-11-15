@@ -38,7 +38,7 @@ module.exports = {
       directory: path.resolve(__dirname, "dist"),
     },
     proxy: {
-      "/**": "http://localhost:8080",
+      "/**": "http://localhost:3000",
     },
   },
   plugins: [
