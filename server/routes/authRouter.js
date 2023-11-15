@@ -5,10 +5,6 @@ const userController = require('../controllers/userController');
 const sessionController = require('../controllers/sessionController');
 
 // Signup
-// router.get('/signup', (req, res) => {
-//   res.sendFile(path.resolve(__dirname, '../client/signup.html'));
-// });
-
 router.post(
   '/signup',
   userController.createUser,
