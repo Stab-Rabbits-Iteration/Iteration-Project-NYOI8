@@ -1,7 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-
-import { useState } from 'react';
 
 const SignUp = () => {
   // keep track of what the user types as its username and password in the form
