@@ -6,6 +6,7 @@ const Signup = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
+  // function to create a user
   const makeUser = (e) => {
     e.preventDefault();
     fetch('/auth/signup', {
