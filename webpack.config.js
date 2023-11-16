@@ -6,7 +6,7 @@ module.exports = {
   entry: './index.js',
   output: {
     filename: 'bundle.js',
-    publicPath: '/',
+    publicPath: '/dist/',
     path: path.resolve(__dirname, 'dist'),
     assetModuleFilename: 'images/[name].[ext]',
   },
@@ -35,17 +35,14 @@ module.exports = {
   },
   devServer: {
     static: {
-      directory: path.resolve(__dirname, 'dist'),
+      directory: path.resolve(__dirname),
     },
     proxy: {
+      '/api/*': 'http://localhost:3000',
       '/**': 'http://localhost:3000',
     },
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      title: 'webpackDev',
-      fileName: 'index.html',
-      template: path.resolve(__dirname, 'index.html'),
-    }),
+    new HtmlWebpackPlugin(),
   ],
 };
