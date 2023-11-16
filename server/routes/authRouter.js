@@ -11,7 +11,8 @@ router.post(
   sessionController.startSession,
   (req, res) => {
     console.log('client created');
-    res.status(200).json({ test: 'this was sent from signup' });
+    const userId = res.locals.userId;
+    res.status(200).json(userId);
   }
 );
 
@@ -21,7 +22,9 @@ router.post(
   userController.verifyUser,
   sessionController.startSession,
   (req, res) => {
-    res.status(200).json(res.locals.ssid);
+    console.log('Client login!');
+    const userId = res.locals.user_id;
+    res.status(200).json(userId);
   }
 );
 

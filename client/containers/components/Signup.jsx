@@ -19,7 +19,7 @@ const Signup = () => {
     })
       .then((res) => res.json())
       .then((data) => console.log('data after making user: ', data))
-      .catch((err) => console.log(err));
+      .catch((err) => console.log('error making user: ', err));
   };
 
   return (

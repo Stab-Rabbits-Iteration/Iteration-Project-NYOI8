@@ -8,18 +8,17 @@ userController.createUser = async (req, res, next) => {
   console.log('Info from req.body: ', req.body);
 
   // signup query: creates a new user in 'user' table of our SQL DB
-  const signupQuery = 'INSERT INTO user (username, password) VALUES ($1, $2)';
   const values = [username, password];
+  const signupQuery =
+    'INSERT INTO "user" (username, password) VALUES ($1, $2) RETURNING *';
 
   const resultSignup = await db.query(signupQuery, values);
-  // console.log('Returned result after signupQuery: ', result);
+  console.log('Returned result after signupQuery: ', resultSignup);
 
-  // get the user id
-  const userQuery =
-    'SELECT _id FROM user WHERE username = $1 AND password = $2';
-  const resultUser = await db.query(userQuery, values);
+  const userId = resultSignup.rows[0]._id;
+  console.log('userId: ', userId);
 
-  console.log('this is resultUser: ', resultUser);
+  res.locals.userId = userId;
 
   next();
 };
@@ -30,24 +29,31 @@ userController.verifyUser = async (req, res, next) => {
   // Query the username in SQL database by input username
   // Match the input password with data password. If it matches, set the res.locals, If not, set the error back
   try {
-    const userName = req.body.username;
+    const username = req.body.username;
     const password = req.body.password;
-    const query = {
-      text: `SELECT _id, username, password FROM "public"."user" WHERE username = '${userName}';`,
-      values: [userName],
-    };
-    const data = await db.query(query);
-    console.log('This is testing: ', data);
-    if (data.password === password) {
-      res.locals = data._id;
-      console.log('This is res.locals: ', res.locals);
+    const values = [username, password];
+    const query =
+      'SELECT _id FROM "public"."user" WHERE username = $1 AND password = $2';
+    const data = await db.query(query, values);
+    const userId = data.rows[0]._id;
+    console.log('This is userId: ', userId);
+    if (userId) {
+      res.locals.user_id = userId;
+      console.log('This is res.locals.user_id: ', res.locals.user_id);
       return next();
     } else {
-      res.redirect('/');
-      return next();
+      return next({
+        log: 'Express error handler caught unknown middleware error',
+        status: 500,
+        message: { err: 'An error occurred if the data did not match' },
+      });
     }
   } catch (error) {
-    return next('Error happens');
+    return next({
+      log: 'Express error handler caught unknown middleware error',
+      status: 500,
+      message: { err: 'An error occurred in verifyUser middleware' },
+    });
   }
 };
 
