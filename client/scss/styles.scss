@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Borel&family=Caveat:wght@400;500;600;700&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Glagolitic&family=Playfair+Display:wght@500&display=swap');
 
 $warm-primary: rgb(249, 206, 175);
 $warm-secondary: #fde2c4;
@@ -11,7 +11,7 @@ $cool-primary: #b5e3d5ff;
 
 body {
   background-color: $cool-extralight;
-  font-family: Borel;
+  font-family: 'Playfair Display';
   display: flex;
   justify-content: center;
 }
@@ -88,7 +88,7 @@ body {
       }
 
       #loginHeader {
-        font-family: Borel;
+        font-family: 'Playfair Display';
         font-style: italic;
         font-size: 3.3vw;
         margin-bottom: 0px;
@@ -134,7 +134,7 @@ body {
       #loginButton {
         grid-column: 2;
         font-style: none;
-        font-family: caveat;
+        font-family: 'Noto Sans Glagolitic';
         font-size: 1.5rem;
         border: none;
         width: 100%;
@@ -220,7 +220,7 @@ body {
 
     .recommendations {
       grid-area: recs;
-      font-family: Caveat;
+      font-family: 'Noto Sans Glagolitic';
       font-size: 2rem;
       background-color: $warm-extralight;
       display: flex;
