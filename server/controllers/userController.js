@@ -61,7 +61,8 @@ userController.getUserProducts = async (req, res, next) => {
   console.log('hit getUserProducts');
   try {
     const userId = req.body.ssid;
-    const query = 'SELECT name, image, skin_type, product_type, price FROM products WHERE user_id = $1';
+    const query =
+      'SELECT name, image, skin_type, product_type, price FROM products WHERE user_id = $1';
     const resQuery = await db.query(query, [userId]);
     console.log('resQuery.rows', resQuery.rows);
     if (resQuery) {
@@ -74,7 +75,7 @@ userController.getUserProducts = async (req, res, next) => {
     return next({
       log: ('Error in userController.getUserProducts:', err),
       status: 500,
-      message: { err: 'Could not fetch your products' }
+      message: { err: 'Could not fetch your products' },
     });
   }
 };

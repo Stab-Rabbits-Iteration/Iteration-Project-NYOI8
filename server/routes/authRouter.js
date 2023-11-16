@@ -8,6 +8,7 @@ const sessionController = require('../controllers/sessionController');
 router.post(
   '/signup',
   userController.createUser,
+  sessionController.setSSIDCookie,
   sessionController.startSession,
   (req, res) => {
     console.log('client created');
@@ -20,6 +21,7 @@ router.post(
 router.post(
   '/login',
   userController.verifyUser,
+  sessionController.setSSIDCookie,
   sessionController.startSession,
   (req, res) => {
     console.log('Client login!');
