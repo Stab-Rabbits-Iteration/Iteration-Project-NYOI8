@@ -12,10 +12,12 @@ app.use('/client', express.static(path.resolve(__dirname, '../client')));
 // Declare the routes
 const authRouter = require('./routes/authRouter.js');
 const apiRouter = require('./routes/apiRouter.js');
+const userRouter = require('./routes/userRouter.js');
 
 // Define route handlers
 app.use('/auth', authRouter);
 app.use('/api', apiRouter);
+app.use('/user', userRouter);
 
 // Define root
 app.get('/', (req, res) => {
