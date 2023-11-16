@@ -1,7 +1,13 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const path = require('path');
 const PORT = 3000;
+
+const mongoose = require('mongoose');
+
+const mongoURI = process.env.MONGO_URI;
+mongoose.connect(mongoURI);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -35,7 +41,7 @@ app.use((err, req, res, next) => {
   const defaultErr = {
     log: 'Express error handler caught unknown middleware error',
     status: 500,
-    message: { err: 'An error occurred' }
+    message: { err: 'An error occurred' },
   };
   const errorObj = Object.assign({}, defaultErr, err);
   console.log(errorObj.log);
