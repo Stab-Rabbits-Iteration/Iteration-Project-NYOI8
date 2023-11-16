@@ -12,5 +12,5 @@ try {
 } catch (error) {
     return next(error);
 }
-
+}
   module.exports = userController;

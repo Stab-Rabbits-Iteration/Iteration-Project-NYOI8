@@ -16,7 +16,13 @@ const Question1 = ({ setProduct }) => {
       </button>
       {open && (
         <div>
-          <button onClick={() => {setProduct('face wash')}}>face wash</button>
+          <button
+            onClick={() => {
+              setProduct('face wash');
+            }}
+          >
+            face wash
+          </button>
           <button
             onClick={() => {
               setProduct('lotion');
