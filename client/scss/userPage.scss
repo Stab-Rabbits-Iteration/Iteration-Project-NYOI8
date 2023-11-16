@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Glagolitic&family=Playfair+Display:wght@500&display=swap');
+
+.productsListContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.productsList {
+  display: flex;
+  align-items: center;
+}
+
+.productCardUser {
+  border: solid 1px rgb(78, 78, 78);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(255, 255, 255);
+  align-items: center;
+  font-family: 'Noto Sans Glagolitic';
+}
