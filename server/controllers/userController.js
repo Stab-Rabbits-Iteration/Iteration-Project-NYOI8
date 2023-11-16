@@ -48,9 +48,35 @@ userController.verifyUser = async (req, res, next) => {
         message: { err: 'An error occurred if the data did not match' },
       });
     }
-    return next()
-} catch (error) {
-    return next(error);
-}
-}
-  module.exports = userController;
+  } catch (error) {
+    return next({
+      log: 'Express error handler caught unknown middleware error',
+      status: 500,
+      message: { err: 'An error occurred in verifyUser middleware' },
+    });
+  }
+};
+
+userController.getUserProducts = async (req, res, next) => {
+  console.log('hit getUserProducts');
+  try {
+    const userId = req.body.ssid;
+    const query = 'SELECT name, image, skin_type, product_type, price FROM products WHERE user_id = $1';
+    const resQuery = await db.query(query, [userId]);
+    console.log('resQuery.rows', resQuery.rows);
+    if (resQuery) {
+      res.locals.productData = resQuery.rows;
+      return next();
+    } else {
+      throw new Error('Query failled in getUserProducts');
+    }
+  } catch (err) {
+    return next({
+      log: ('Error in userController.getUserProducts:', err),
+      status: 500,
+      message: { err: 'Could not fetch your products' }
+    });
+  }
+};
+
+module.exports = userController;

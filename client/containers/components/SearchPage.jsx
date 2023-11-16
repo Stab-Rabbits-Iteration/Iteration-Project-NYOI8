@@ -26,7 +26,7 @@ const SearchPage = () => {
       };
       fetch('/api', requestOptions)
         .then((data) => data.json())
-        .then((data) => console.log(data))
+        .then((data) => setItemList(data))
         .catch((error) => {
           return { error: error.message };
         });
