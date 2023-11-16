@@ -19,6 +19,11 @@ const NavBar = ({ ssid }) => {
           Search Page
         </Link>
       </li>
+      <li>
+        <Link to='/userPage' className='navLink'>
+          User Page
+        </Link>
+      </li>
     </ul>
   );
 };
