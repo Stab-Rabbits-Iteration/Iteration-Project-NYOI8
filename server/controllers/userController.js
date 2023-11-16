@@ -48,13 +48,9 @@ userController.verifyUser = async (req, res, next) => {
         message: { err: 'An error occurred if the data did not match' },
       });
     }
-  } catch (error) {
-    return next({
-      log: 'Express error handler caught unknown middleware error',
-      status: 500,
-      message: { err: 'An error occurred in verifyUser middleware' },
-    });
-  }
-};
-
-module.exports = userController;
+    return next()
+} catch (error) {
+    return next(error);
+}
+}
+  module.exports = userController;
