@@ -11,7 +11,7 @@ router.post(
   sessionController.startSession,
   (req, res) => {
     console.log('client created');
-    res.status(200).json(res.locals.ssid);
+    res.status(200).json({ test: 'this was sent from signup' });
   }
 );
 
