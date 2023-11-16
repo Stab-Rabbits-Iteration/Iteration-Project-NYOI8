@@ -38,8 +38,8 @@ userController.verifyUser = async (req, res, next) => {
     const userId = data.rows[0]._id;
     console.log('This is userId: ', userId);
     if (userId) {
-      res.locals.user_id = userId;
-      console.log('This is res.locals.user_id: ', res.locals.user_id);
+      res.locals.userId = userId;
+      console.log('This is res.locals.user_id: ', res.locals.userId);
       return next();
     } else {
       return next({

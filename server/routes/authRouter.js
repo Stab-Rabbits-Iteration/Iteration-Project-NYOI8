@@ -23,7 +23,7 @@ router.post(
   sessionController.startSession,
   (req, res) => {
     console.log('Client login!');
-    const userId = res.locals.user_id;
+    const userId = res.locals.userId;
     res.status(200).json(userId);
   }
 );
