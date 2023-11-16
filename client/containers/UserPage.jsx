@@ -5,7 +5,7 @@ import { Navigate } from 'react-router-dom';
 
 const UserPage = ({ ssid }) => {
   const [productsData, setProductsData] = useState([]);
-  
+  const [isLoading, setIsLoading] = useState(true);
 
   // ssid will be passed down as a prop send to the server in fetch
   if (!ssid) {
@@ -20,23 +20,23 @@ const UserPage = ({ ssid }) => {
         'Content-Type': 'Application/JSON',
       },
       // body: JSON.stringify(ssid)
-      body: JSON.stringify(1)
+      body: JSON.stringify(1),
     })
-      .then(res => res.json())
-      .then(res => {
+      .then((res) => res.json())
+      .then((res) => {
         console.log(res);
         setProductsData(res);
         setIsLoading(false);
       })
-      .catch(err => console.log('Error from UserPage fetch:', err));
+      .catch((err) => console.log('Error from UserPage fetch:', err));
   });
   const products = [];
   for (let i; i < productsData.length; i++) {
-    products.push(<ProductCardUser productsData={productsData[i]}/>);
+    products.push(<ProductCardUser productsData={productsData[i]} />);
   }
 
   return (
-    <div className='productsList'>
+    <div className="productsList">
       <h1>Your Products</h1>
       {products}
     </div>
