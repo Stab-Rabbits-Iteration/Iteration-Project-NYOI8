@@ -6,8 +6,7 @@ const Signup = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const makeUser = (e) => {
-    e.preventDefault();
+  const makeUser = (username, password) => {
     fetch('/auth/signup', {
       method: 'POST',
       headers: {
@@ -20,14 +19,20 @@ const Signup = () => {
     })
       .then((res) => res.json())
       .then((data) => console.log('data after making user: ', data))
-      .catch((err) => console.log(err));
+      .catch((err) => console.log('error making user: ', err));
   };
 
   return (
     <div className="signUp-Container">
       <h2>Create a Peau Account</h2>
       <div className="signUp-box">
-        <form id="signupForm" onSubmit={makeUser}>
+        <form
+          id="signupForm"
+          onSubmit={(e) => {
+            makeUser(username, password);
+            e.preventDefault();
+          }}
+        >
           <input
             name="username"
             type="text"
