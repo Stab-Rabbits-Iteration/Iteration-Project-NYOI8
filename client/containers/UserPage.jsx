@@ -5,6 +5,7 @@ import { Navigate } from 'react-router-dom';
 
 const UserPage = ({ ssid }) => {
   const [productsData, setProductsData] = useState([]);
+  
 
   // ssid will be passed down as a prop send to the server in fetch
   if (!ssid) {
