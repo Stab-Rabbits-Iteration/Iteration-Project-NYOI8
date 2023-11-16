@@ -1,15 +1,9 @@
-const session = require('../models/sessionModel');
-const sessionController = {};
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-sessionController.startSession = (req, res, next) => {
-    // const userId = res.locals.user;
-  
-    // session.create( {cocketIdL: usersId}, )
-  
-    // const sessionSchema = new Schema(PageTransitionEvent
-    //   cocketId: {}
-    //   createAt: {})
-    // console.log(req.body);
-  
-    return next();
-  };
+const sessionSchema = new Schema({
+  cookieId: { type: String, required: true, unique: true },
+  createdAt: { type: Date, expires: 30, default: Date.now },
+});
+
+module.exports = mongoose.model('Session', sessionSchema);
