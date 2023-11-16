@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Question3 from './Question3.jsx';
 
-const Question2 = ({setSkinType}) => {
+const Question2 = ({ setSkinType }) => {
   const [open, setOpen] = useState(false);
   // const [skinType, setSkinType] = useState('');
 
