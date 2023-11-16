@@ -1,11 +1,11 @@
-const { Pool } = require("pg");
+const { Pool } = require('pg');
+require('dotenv').config();
 
-const PG_URI =
-  " ";
+const PG_URI = process.env.PG_URI;
 
 // create a new pool here using the connection string above
 const pool = new Pool({
-  connectionString: PG_URI,
+  connectionString: PG_URI
 });
 
 /* This is a database to store product information. There are 3 main tables:
@@ -21,9 +21,9 @@ const pool = new Pool({
 // of pool.query() after logging the query. This is he access point to the database...
 module.exports = {
   query: async (text, params, callback) => {
-    console.log("executed query: ", text);
+    console.log('executed query: ', text);
     const queryRes = await pool.query(text, params, callback);
     // console.log(queryRes);
     return queryRes;
-  },
+  }
 };
