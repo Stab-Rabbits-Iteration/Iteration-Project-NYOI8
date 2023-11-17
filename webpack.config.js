@@ -1,36 +1,35 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: process.env.NODE_ENV,
-  entry: "./index.js",
+  entry: './index.js',
   output: {
     filename: 'bundle.js',
     publicPath: '/dist/',
     path: path.resolve(__dirname, 'dist'),
-    assetModuleFilename: 'images/[name].[ext]'
+    assetModuleFilename: 'images/[name].[ext]',
   },
-  devtool: "eval-source-map",
+  devtool: 'eval-source-map',
   module: {
     rules: [
       {
         test: /\.jsx?/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
           options: {
-            presets: ["@babel/preset-env", "@babel/preset-react"],
-            plugins: ['@babel/plugin-syntax-jsx']
+            presets: ['@babel/preset-env', '@babel/preset-react'],
           },
         },
       },
       {
         test: /\.s?css/,
-        use: ["style-loader", "css-loader", "sass-loader"],
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
         test: /\.(png|svg|jpe?g|gif)$/i,
-        type: "asset/resource",
+        type: 'asset/resource',
       },
     ],
   },
@@ -39,7 +38,8 @@ module.exports = {
       directory: path.resolve(__dirname),
     },
     proxy: {
-      "/**": "http://localhost:3000",
+      '/api/*': 'http://localhost:3000',
+      '/**': 'http://localhost:3000',
     },
   },
   plugins: [
