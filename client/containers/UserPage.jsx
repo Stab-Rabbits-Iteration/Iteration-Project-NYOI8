@@ -11,7 +11,6 @@ const UserPage = ({ ssid }) => {
   if (!ssid) {
     return <Navigate to="/login" replace />;
   }
-
   useEffect(() => {
     setIsLoading(true);
     fetch('/user/getProducts', {
@@ -20,27 +19,40 @@ const UserPage = ({ ssid }) => {
         'Content-Type': 'Application/JSON',
       },
       // body: JSON.stringify(ssid)
-      body: JSON.stringify(1),
+      body: JSON.stringify({ ssid: 1 }),
     })
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
+        console.log('here is res', res);
         setProductsData(res);
         setIsLoading(false);
       })
       .catch((err) => console.log('Error from UserPage fetch:', err));
-  });
-  const products = [];
-  for (let i; i < productsData.length; i++) {
-    products.push(<ProductCardUser productsData={productsData[i]} />);
-  }
+  }, []);
+  console.log('productsData', productsData);
 
-  return (
-    <div className="productsList">
-      <h1>Your Products</h1>
-      {products}
-    </div>
-  );
+  if (!isLoading) {
+    const products = [];
+    for (let i = 0; i < productsData.length; i++) {
+      products.push(<ProductCardUser productsData={productsData[i]} />);
+    }
+
+    return (
+      <div className="productsListContainer">
+        <h1>Your Products</h1>
+        <div className="productsList">{products}</div>
+      </div>
+    );
+  } else {
+    return (
+      <div className="productsListContainer">
+        <h1>Your Products</h1>
+        <div className="productsList">
+          <p>You have no products</p>
+        </div>
+      </div>
+    );
+  }
 };
 
 export default UserPage;
