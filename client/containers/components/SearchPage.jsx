@@ -2,13 +2,23 @@ import React, { useEffect, useState } from 'react';
 import Question1 from './Question1.jsx';
 import Question2 from './Question2.jsx';
 import Question3 from './Question3.jsx';
+import SearchResults from './SearchResults.jsx';
+import { Navigate } from 'react-router-dom';
 
-const SearchPage = () => {
+const SearchPage = ({ ssid }) => {
   const [click, setClick] = useState(true);
   const [price, setPrice] = useState('');
   const [skintype, setSkinType] = useState('');
   const [product, setProduct] = useState('');
   const [count, setCount] = useState(0);
+
+  if (!ssid) {
+    return <Navigate to="/login" replace />;
+  }
+
+  if (!ssid) {
+    return <Navigate to="/login" replace />;
+  }
 
   const [itemlist, setItemList] = useState([]);
   const [renderSearch, setRenderSearch] = useState(false);

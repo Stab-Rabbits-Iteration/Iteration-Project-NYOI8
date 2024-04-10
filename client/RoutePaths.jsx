@@ -7,10 +7,10 @@ import UserPage from './containers/UserPage.jsx';
 
 const RoutePaths = ({ ssid, setSsid }) => {
   const element = useRoutes([
-    { path: '/', element: <Login ssid={ssid} setSsid={setSsid}/> },
-    { path: '/signup', element: <Signup ssid={ssid} setSsid={setSsid}/> },
-    { path: '/searchPage', element: <SearchPage/> },
-    { path: 'userPage', element: <UserPage ssid={ssid}/> }
+    { path: '/', element: <Login setSsid={setSsid} /> },
+    { path: '/signup', element: <Signup setSsid={setSsid} /> },
+    { path: '/searchPage', element: <SearchPage ssid={ssid} /> },
+    { path: '/userPage', element: <UserPage ssid={ssid} /> },
   ]);
   return element;
 };

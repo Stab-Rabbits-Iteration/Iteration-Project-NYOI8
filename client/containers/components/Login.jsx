@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import '../../scss/login.scss';
+import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
+const Login = ({ setSsid }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+
+  const redirect = useNavigate();
 
   // The fetch request function about the verifing the user
   const verifyUser = (e) => {
@@ -11,16 +14,27 @@ const Login = () => {
     fetch('/auth/login', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         username,
-        password
-      })
+        password,
+      }),
     })
       .then((res) => res.json())
-      .then((data) => console.log('data after verifing user: ', data))
-      .catch((err) => console.log(err));
+
+      // Set up SSID and redirect the user to userPage after successfully login.
+      .then((res) => {
+        console.log('SSID after verifing the user: ', res);
+        setSsid(res);
+        redirect('/userPage');
+      })
+
+      // Error handler
+      .catch((err) => {
+        console.log(err);
+        alert(err);
+      });
   };
 
   return (
@@ -46,7 +60,7 @@ const Login = () => {
             }}
             value={password}
           />
-          <input id="login-btn" type="submit" value="login" />
+          <input id="login-btn" type="submit" value="Login" />
         </form>
       </div>
     </div>

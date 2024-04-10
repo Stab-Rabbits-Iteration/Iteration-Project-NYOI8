@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import '../../scss/signup.scss';
+import { useNavigate } from 'react-router-dom';
 
-const Signup = () => {
+const Signup = ({ setSsid }) => {
   // keep track of what the user types as its username and password in the form
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+
+  const redirect = useNavigate();
 
   const makeUser = (username, password) => {
     fetch('/auth/signup', {
@@ -17,9 +20,18 @@ const Signup = () => {
         password,
       }),
     })
-      .then((res) => res.json())
-      .then((data) => console.log('data after making user: ', data))
-      .catch((err) => console.log('error making user: ', err));
+      // Set up SSID and redirect the user to userPage after successfully signup.
+      .then((res) => {
+        console.log('SSID after making new user: ', res);
+        setSsid(res);
+        redirect('/userPage');
+      })
+
+      // Error handler
+      .catch((err) => {
+        console.log('error making user: ', err);
+        alert(err);
+      });
   };
 
   return (
