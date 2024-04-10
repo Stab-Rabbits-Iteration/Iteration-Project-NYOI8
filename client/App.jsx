@@ -1,11 +1,14 @@
-import React from 'react';
-import MainContainer from './containers/MainContainer.jsx';
+import React, { useState } from 'react';
+import RoutePaths from './RoutePaths.jsx';
+import NavBar from './containers/components/NavBar.jsx';
 
 const App = () => {
+  const [ssid, setSsid] = useState('');
   return (
-    <>
-      <MainContainer containerClass='mainContainer' headerId='pageHeader' />
-    </>
+    <div className='routesContainer'>
+      <NavBar ssid={ssid}/>
+      <RoutePaths ssid={ssid} setSsid={setSsid}/>
+    </div>
   );
 };
 
